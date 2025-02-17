@@ -1,0 +1,10 @@
+.navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.navigationUl {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
