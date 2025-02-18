@@ -1,0 +1,29 @@
+.authorization {
+    padding: 20px;
+}
+
+.authorizationLink {
+    display: flex;
+    align-items:flex-start;
+    justify-content: space-between;
+}
+
+.authorizationBtnBlock {
+    flex: 1 1 50%;
+}
+
+
+.authorizationBtn {
+    border: none;
+    background: transparent;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 22px;
+    
+}
+
+.active {
+    background-color: rgb(224, 217, 217);
+    border-bottom: 2px solid black;
+}
