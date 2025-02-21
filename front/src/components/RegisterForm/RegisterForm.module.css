@@ -11,6 +11,7 @@
 .registerFormInputBlock {
     width: 270px;
     margin-bottom: 28px;
+    margin-top: 28px;
 }
 
 .registerFormInputBlock:nth-child(3) {
