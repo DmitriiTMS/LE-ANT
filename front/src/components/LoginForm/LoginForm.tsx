@@ -1,12 +1,20 @@
+import { InputFormAuth } from '../InputFormAuth/InputFormAuth';
+import styles from './LoginForm.module.css';
+
 export const LoginForm = () => {
     return (
-        <>
-            <h3>Вход</h3>
-            <form>
-                <input type="email" placeholder="Введите email" />
-                <input type="password" placeholder="Введите пароль" />
-                <button type="submit">Войти</button>
+        <div className={styles.loginFormBlock}>
+            <form className={styles.loginForm}>
+                <div className={styles.loginFormInputBlock}>
+                    <InputFormAuth type='email' placeholder='Введите email' />
+                </div>
+                <div className={styles.loginFormInputBlock}>
+                    <InputFormAuth type='password' placeholder='Введите пароль' />
+                </div>
+                <div className={styles.loginFormBtnBlock}>
+                    <button disabled className={styles.loginFormBtn} type="submit">Войти</button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }

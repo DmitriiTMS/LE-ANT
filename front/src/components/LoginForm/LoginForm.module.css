@@ -1,0 +1,43 @@
+.loginFormBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginForm {
+    margin-top: 40px;
+}
+
+.loginFormInputBlock {
+    width: 270px;
+    margin-bottom: 28px;
+}
+
+.loginFormInputBlock:nth-child(2) {
+    margin-bottom: 40px;
+}
+
+
+.loginFormBtnBlock {
+    display: flex;
+    justify-content: center;
+}
+
+.loginFormBtn {
+   padding: 6px 20px;
+   border: 2px solid black;
+   border-radius: 4px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: all .3s ease;
+}
+
+.loginFormBtn:hover {
+    background-color: black;
+    color: #fff;
+}
+
+.loginFormBtn:disabled {
+    pointer-events: none;
+    border: 2px solid #ccc;
+}

@@ -1,0 +1,78 @@
+.registerFormBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registerForm {
+    margin-top: 40px;
+}
+
+.registerFormInputBlock {
+    width: 270px;
+    margin-bottom: 28px;
+}
+
+.registerFormInputBlock:nth-child(3) {
+    margin-bottom: 30px;
+}
+
+
+.registerFormBtnBlock {
+    display: flex;
+    justify-content: center;
+}
+
+.registerFormBtn {
+    padding: 6px 20px;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.registerFormBtn:hover {
+    background-color: black;
+    color: #fff;
+}
+
+
+.registerFormBtn:disabled {
+    pointer-events: none;
+    border: 2px solid #ccc;
+}
+
+
+
+.selectWrapper {
+    position: relative;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+}
+
+
+.select {
+    width: 200px;
+    padding: 6px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select:hover {
+    border-color: black;
+    background-color: #fff;
+}
+
+
+.select:focus {
+    outline: none;
+    border-color: black;
+    box-shadow: 0 0 8px black;
+}
