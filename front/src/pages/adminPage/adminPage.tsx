@@ -1,8 +1,17 @@
+import { Outlet } from "react-router-dom";
+
+import styles from './adminPage.module.css';
+import { NavigationAdmin } from "../../components/NavigationAdmin/NavigationAdmin";
+
 export const AdminPage = () => {
     return (
-        <section>
+        <section className={styles.admin}>
             <div className="container">
-                <div>AdminPage</div>
+                <h1 className={styles.adminTitle}>Страница Аминистратора</h1>
+                <div className={styles.wrapperAdmin}>
+                    <NavigationAdmin/>
+                    <Outlet />
+                </div>
             </div>
         </section>
     )

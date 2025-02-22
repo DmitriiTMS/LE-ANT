@@ -18,3 +18,15 @@ export const AdminPage = lazy(() =>
     default: module.AdminPage,
   }))
 );
+
+export const UsersPage = lazy(() =>
+  import("../pages/usersPage/usersPage").then((module) => ({
+    default: module.UsersPage,
+  }))
+);
+
+export const JudgesPage = lazy(() =>
+  import("../pages/judgesPage/judgesPage").then((module) => ({
+    default: module.JudgesPage,
+  }))
+);

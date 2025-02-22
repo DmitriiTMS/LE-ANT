@@ -1,0 +1,23 @@
+.linkLi {
+    margin-bottom: 20px;
+}
+
+.linkPage {
+    display: block;
+    font-size: 23px;
+    padding: 6px;
+    transition: all .3s ease;
+}
+
+.linkPage:hover {
+    background-color: black;
+    color: white;
+}
+
+.linkPageActive {
+    display: block;
+    padding: 6px;
+    font-size: 23px;
+    background-color: black;
+    color: white;
+}

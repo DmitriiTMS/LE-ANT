@@ -19,12 +19,28 @@ export const getAllUsers = createAsyncThunk(
     },
 )
 
+export const getUserId = createAsyncThunk(
+    'users/getUserId',
+    async (id: number, thunkAPI) => {
+        try {
+            const response = await axios.get<IUser>(`http://localhost:4200/users/${id}`)
+            return response.data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                return thunkAPI.rejectWithValue(error.response?.data || error.message);
+            } else {
+                return thunkAPI.rejectWithValue('Errrrrror');
+            }
+        }
+    },
+)
+
 export const addUser = createAsyncThunk(
     'users/addUser',
     async (user: IUser, thunkAPI) => {
         try {
-            await axios.post('http://localhost:4200/users', user)
-            thunkAPI.dispatch(getAllUsers())
+            const response = await axios.post('http://localhost:4200/users', user);
+            localStorage.setItem("id", response.data.id)
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
                 return thunkAPI.rejectWithValue(error.response?.data || 'Ошибка при добавлении пользователя');
@@ -40,6 +56,7 @@ export const addUser = createAsyncThunk(
 
 const initialState: IUsersState = {
     users: [],
+    user: null,
     loading: false,
     error: null,
 };
@@ -47,7 +64,11 @@ const initialState: IUsersState = {
 export const usersSlice = createSlice({
     name: 'users',
     initialState,
-    reducers: {},
+    reducers: {
+        resetUser: (state) => {
+            state.user = null;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getAllUsers.pending, (state) => {
@@ -74,7 +95,21 @@ export const usersSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload as string;
             })
+
+            .addCase(getUserId.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getUserId.fulfilled, (state, action) => {
+                state.loading = false;
+                state.user = action.payload;
+            })
+            .addCase(getUserId.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
     },
 });
 
+export const { resetUser } = usersSlice.actions;
 export default usersSlice.reducer;

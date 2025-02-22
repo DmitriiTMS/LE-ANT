@@ -8,6 +8,24 @@
       "password": "123456",
       "images": [],
       "id": 1
+    },
+    {
+      "role": "PARTICIPANT",
+      "name": "Dmitrii",
+      "instagramName": "svsbs",
+      "email": "user@mail.ru",
+      "password": "123456",
+      "images": [],
+      "id": 2
+    },
+    {
+      "role": "JUDGE",
+      "name": "Dmitrii",
+      "instagramName": "Dmitrii Instagram",
+      "email": "user@mail.ru",
+      "password": "123456",
+      "images": [],
+      "id": 3
     }
   ]
 }

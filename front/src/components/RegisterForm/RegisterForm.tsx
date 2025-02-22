@@ -5,9 +5,9 @@ import { IRegisterForm, ROLE_OBJ, Roles } from '../../types/types';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
+import { addUser } from '../../store/slices/users/usersSlice';
 
 import styles from './RegisterForm.module.css';
-import { addUser } from '../../store/slices/users/usersSlice';
 
 
 export const RegisterForm = (

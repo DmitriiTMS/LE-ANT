@@ -1,0 +1,20 @@
+.profileBlock {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.profileBtn {
+    padding: 4px 20px;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: rgb(207, 114, 114);
+    color: white;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.profileBtn:hover {
+    background-color: red;
+    color: white;
+}
