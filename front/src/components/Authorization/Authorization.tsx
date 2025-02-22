@@ -4,7 +4,9 @@ import { LoginForm } from '../LoginForm/LoginForm';
 import styles from './Authorization.module.css';
 import { RegisterForm } from '../RegisterForm/RegisterForm';
 
-export const Authorization = () => {
+export const Authorization = (
+    {handleCancel}:{handleCancel: () => void}
+) => {
 
     const [view, setView] = useState(false);
 
@@ -26,7 +28,7 @@ export const Authorization = () => {
                     <button className={`${styles.authorizationBtn} ${view && styles.active}`} onClick={openRegister}>Регистрация</button>
                 </div>
             </div>
-            {view ? <RegisterForm /> : <LoginForm />}
+            {view ? <RegisterForm handleCancel={handleCancel}/> : <LoginForm />}
         </div>
     )
 }

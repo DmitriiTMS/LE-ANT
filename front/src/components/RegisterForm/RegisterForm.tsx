@@ -1,37 +1,73 @@
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { InputFormAuth } from '../InputFormAuth/InputFormAuth';
 import { IRegisterForm, ROLE_OBJ, Roles } from '../../types/types';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+
 import styles from './RegisterForm.module.css';
+import { addUser } from '../../store/slices/users/usersSlice';
 
 
+export const RegisterForm = (
+    { handleCancel }: { handleCancel: () => void }
+) => {
 
-export const RegisterForm = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const { error, loading } = useSelector((state: RootState) => state.usersSlice);
+
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        reset,
+        formState: { errors, isValid },
     } = useForm<IRegisterForm>({
         mode: "onChange",
     });
 
-    const submitRegisterForm: SubmitHandler<IRegisterForm> = (
-        data: IRegisterForm
-    ) => {
-        ROLE_OBJ.forEach((role) => {
-            if (data.role == role.roleEnum) {
-                console.log({
-                    ...data,
-                    role: role.roleNameServer,
-                });
-
-                // mutate({
-                //   ...data,
-                //   role: role.roleNameServer,
-                // });
+    const submitRegisterForm: SubmitHandler<IRegisterForm> = async (data: IRegisterForm) => {
+        let user;
+        try {
+            ROLE_OBJ.forEach((role) => {
+                if (data.role == role.roleEnum) {
+                    user = {
+                        ...data,
+                        role: role.roleNameServer,
+                        images: []
+                    };
+                }
+            });
+            await dispatch(addUser(user!)).unwrap();
+            if (!loading) {
+                handleCancel()
+                reset();
             }
-        });
+
+        } catch (err) {
+            return err
+        }
     };
+
+    useEffect(() => {
+        const selectElement = document.querySelector(`.${styles.select}`) as HTMLSelectElement;
+        if (selectElement) {
+            selectElement.addEventListener('change', (event) => {
+                const target = event.target as HTMLSelectElement;
+                if (target) {
+                    const selectedOption = target.options[target.selectedIndex];
+                    if (selectedOption.value !== "") {
+                        selectedOption.style.color = "black";
+                        selectElement.style.color = "black";
+                    } else {
+                        selectedOption.style.color = "";
+                        selectElement.style.color = "";
+                    }
+                }
+            });
+        }
+    }, [isValid]);
+
     return (
         <>
             <div className={styles.registerFormBlock}>
@@ -65,6 +101,24 @@ export const RegisterForm = () => {
                         />
                     </div>
                     <div className={styles.registerFormInputBlock}>
+                        <div className={styles.selectWrapper}>
+                            <select  {...register("role", {
+                                required: "Вы не выбрали роль",
+                            })} className={styles.select}>
+                                <option className={styles.checkRole} value="">Выберите роль</option>
+                                {ROLE_OBJ.map((role, index) => (
+                                    <option key={index} value={role.roleEnum}>
+                                        {role.roleEnum === Roles.PARTICIPANT
+                                            ? role.roleNameClient
+                                            : role.roleEnum === Roles.JUDGE
+                                                ? role.roleNameClient
+                                                : null}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                    <div className={styles.registerFormInputBlock}>
                         <InputFormAuth placeholder="Укажите email"
                             type="email"
                             registerName="email"
@@ -77,7 +131,7 @@ export const RegisterForm = () => {
                             }}
                             error={errors.email} />
                     </div>
-                    <div>
+                    <div className={styles.registerFormInputBlock}>
                         <InputFormAuth placeholder="Придумайте пароль"
                             type="password"
                             registerName="password"
@@ -89,28 +143,17 @@ export const RegisterForm = () => {
                             register={register}
                             error={errors.password} />
                     </div>
-                    <div className={styles.registerFormInputBlock}>
-                        <div className={styles.selectWrapper}>
-                            <select  {...register("role", {
-                                required: "Вы не выбрали роль",
-                            })} className={styles.select}>
-                                <option value="">Выберите роль</option>
-                                {ROLE_OBJ.map((role, index) => (
-                                    <option key={index} value={role.roleEnum}>
-                                        {role.roleEnum === Roles.PARTICIPANT
-                                            ? role.roleNameClient
-                                            : role.roleEnum === Roles.JUDGE
-                                                ? role.roleNameClient
-                                                : null}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
 
-                    </div>
                     <div className={styles.registerFormBtnBlock}>
-                        <button disabled className={styles.registerFormBtn} type="submit">Зарегистрироваться</button>
+                        <button
+                            disabled={!isValid}
+                            className={styles.registerFormBtn}
+                            type="submit">
+                            Зарегистрироваться
+                        </button>
                     </div>
+                    <div>{loading && "Loading..."}</div>
+                    <div className={styles.danger}>{error && "При регистрации произошла ошибка"}</div>
                 </form>
             </div>
         </>

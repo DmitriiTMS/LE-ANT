@@ -9,14 +9,17 @@ export const LoginForm = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        reset,
+        formState: { errors, isValid },
     } = useForm<ILoginForm>({
         mode: "onChange",
     });
 
     const submitRegisterForm: SubmitHandler<ILoginForm> = (data: ILoginForm) => {
         console.log(data);
+        reset();
     };
+
 
     return (
         <div className={styles.loginFormBlock}>
@@ -49,7 +52,12 @@ export const LoginForm = () => {
                         error={errors.password} />
                 </div>
                 <div className={styles.loginFormBtnBlock}>
-                    <button disabled className={styles.loginFormBtn} type="submit">Войти</button>
+                    <button
+                        disabled={!isValid}    
+                        className={styles.loginFormBtn}
+                        type="submit">
+                        Войти
+                    </button>
                 </div>
             </form>
         </div>

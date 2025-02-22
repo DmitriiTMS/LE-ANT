@@ -33,6 +33,7 @@ export interface IRegisterForm {
     email: string;
     password: string;
     role: Roles | string;
+    images: string[];
   }
 
 

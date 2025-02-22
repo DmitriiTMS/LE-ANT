@@ -53,17 +53,16 @@
     justify-content: center;
 }
 
-
 .select {
-    width: 200px;
+    width: 270px;
     padding: 6px;
     font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
+    border: none;
+    border-bottom: 2px solid black;
     appearance: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    color: rgba(132, 128, 128, 0.88);
 }
 
 .select:hover {
@@ -74,6 +73,11 @@
 
 .select:focus {
     outline: none;
-    border-color: black;
-    box-shadow: 0 0 8px black;
+    /* border-color: black;
+    box-shadow: 0 0 8px black; */
+}
+
+.danger {
+    color: red;
+    text-align: center;
 }

@@ -20,7 +20,7 @@ export const ButtonAuthorization = () => {
                 Вход / Регистрация
             </Button>
             <Modal open={isModalOpen} onCancel={handleCancel} footer={null}>
-                <Authorization/>
+                <Authorization handleCancel={handleCancel}/>
             </Modal>
         </div>
     )
