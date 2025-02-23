@@ -14,7 +14,7 @@ export const UserProfile: React.FC<IUserProfile> = ({ user, logoutProfile }) => 
                 className={styles.profileBtn}
             >Выйти
             </button>
-            <span>Привет, {user.name}</span>
+            <span>Привет, {user && user.name}</span>
         </div>
     )
 }

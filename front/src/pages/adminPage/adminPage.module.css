@@ -7,6 +7,10 @@
     gap: 50px;
 }
 
+.adminPage {
+    flex: 1 1 100%;
+}
+
 .adminTitle {
     font-size: 34px;
     margin-bottom: 30px;

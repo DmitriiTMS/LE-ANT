@@ -1,31 +1,26 @@
 {
   "users": [
     {
-      "role": "PARTICIPANT",
+      "role": "ADMIN",
       "name": "Dmitrii",
       "instagramName": "svsbs",
       "email": "user@mail.ru",
-      "password": "123456",
+      "password": "111111111",
       "images": [],
+      "accessAllowed": true,
+      "slug": "dmitrii",
       "id": 1
-    },
-    {
-      "role": "PARTICIPANT",
-      "name": "Dmitrii",
-      "instagramName": "svsbs",
-      "email": "user@mail.ru",
-      "password": "123456",
-      "images": [],
-      "id": 2
     },
     {
       "role": "JUDGE",
       "name": "Dmitrii",
-      "instagramName": "Dmitrii Instagram",
+      "instagramName": "svsbs",
       "email": "user@mail.ru",
-      "password": "123456",
+      "password": "5555555555",
       "images": [],
-      "id": 3
+      "accessAllowed": false,
+      "slug": "dmitrii",
+      "id": 2
     }
   ]
 }

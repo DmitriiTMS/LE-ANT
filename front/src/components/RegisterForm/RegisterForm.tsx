@@ -8,12 +8,15 @@ import { AppDispatch, RootState } from '../../store/store';
 import { addUser } from '../../store/slices/users/usersSlice';
 
 import styles from './RegisterForm.module.css';
+import { useNavigate } from 'react-router-dom';
+import { generateSlug } from '../../utils/generateSlug';
 
 
 export const RegisterForm = (
     { handleCancel }: { handleCancel: () => void }
 ) => {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const { error, loading } = useSelector((state: RootState) => state.usersSlice);
 
@@ -34,11 +37,14 @@ export const RegisterForm = (
                     user = {
                         ...data,
                         role: role.roleNameServer,
-                        images: []
+                        images: [],
+                        accessAllowed: false,
+                        slug: generateSlug(data.name)
                     };
                 }
             });
             await dispatch(addUser(user!)).unwrap();
+            navigate('/')
             if (!loading) {
                 handleCancel()
                 reset();

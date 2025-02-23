@@ -9,8 +9,10 @@ export const AdminPage = () => {
             <div className="container">
                 <h1 className={styles.adminTitle}>Страница Аминистратора</h1>
                 <div className={styles.wrapperAdmin}>
-                    <NavigationAdmin/>
-                    <Outlet />
+                    <NavigationAdmin />
+                    <div className={styles.adminPage}>
+                        <Outlet />
+                    </div>
                 </div>
             </div>
         </section>

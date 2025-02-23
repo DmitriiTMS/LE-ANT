@@ -5,11 +5,19 @@ export interface IUser{
     instagramName: string;
     password: string;
     role: string;
-    images: string[]
+    images: string[],
+    accessAllowed?: boolean;
 }
 
 export interface IUsersState {
     users: IUser[];
+    user: IUser | null | undefined;
+    loading: boolean;
+    error: string | null;
+    auth: boolean;
+}
+
+export interface IUsersStateProfile {
     user: IUser | null | undefined;
     loading: boolean;
     error: string | null;

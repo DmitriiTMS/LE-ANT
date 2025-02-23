@@ -1,3 +1,7 @@
+.navigateAdmin {
+    flex: 1 0 200px;
+}
+
 .linkLi {
     margin-bottom: 20px;
 }

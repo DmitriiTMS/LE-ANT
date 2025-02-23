@@ -4,7 +4,7 @@ import styles from './NavigationAdmin.module.css';
 
 export const NavigationAdmin = () => {
     return (
-        <nav>
+        <nav className={styles.navigateAdmin}>
             <ul>
                 <li className={styles.linkLi}>
                     <NavLink

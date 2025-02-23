@@ -7,6 +7,13 @@ export const Layout = lazy(() =>
   }))
 );
 
+
+export const PrivateRoute = lazy(() =>
+  import("../components/PrivateRoute/PrivateRoute").then((module) => ({
+    default: module.PrivateRoute,
+  }))
+);
+
 export const MainPage = lazy(() =>
   import("../pages/mainPage/mainPage").then((module) => ({
     default: module.MainPage,
@@ -28,5 +35,11 @@ export const UsersPage = lazy(() =>
 export const JudgesPage = lazy(() =>
   import("../pages/judgesPage/judgesPage").then((module) => ({
     default: module.JudgesPage,
+  }))
+);
+
+export const UserIdPage = lazy(() =>
+  import("../pages/userIdPage/userIdPage").then((module) => ({
+    default: module.UserIdPage,
   }))
 );
