@@ -14,7 +14,6 @@ export interface IUsersState {
     user: IUser | null | undefined;
     loading: boolean;
     error: string | null;
-    auth: boolean;
 }
 
 export interface IUsersStateProfile {

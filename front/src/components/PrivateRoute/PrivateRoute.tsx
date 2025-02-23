@@ -1,27 +1,29 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { IUser } from "../../types/userSliceTypes";
 
 interface PrivateRouteProps {
     allowedRoles: string[];
 }
 
 export const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
+    const user = localStorage.getItem("user");
+    let localUser: IUser | null = null;
 
-    const { user: userProfile, loading } = useSelector((state: RootState) => state.usersProfileSlice);
-    const id = Number(localStorage.getItem("id")) || null;
-
-
-    if (loading) {
-        return <div>Загрузка...</div>;
+    if (user) {
+        try {
+            localUser = JSON.parse(user);
+        } catch (error) {
+            console.error("Ошибка при парсинге данных пользователя:", error);
+            return <Navigate to="/" replace />;
+        }
     }
 
 
-    if (!id) {
+    if (!user || !localUser) {
         return <Navigate to="/" replace />;
     }
 
-    if (!userProfile || !userProfile.role || !allowedRoles.includes(userProfile.role)) {
+    if (!allowedRoles.includes(localUser.role)) {
         return <Navigate to="/" replace />;
     }
 

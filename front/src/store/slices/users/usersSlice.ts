@@ -58,7 +58,7 @@ export const addUser = createAsyncThunk(
     async (user: IUser, thunkAPI) => {
         try {
             const response = await axios.post('http://localhost:4200/users', user);
-            localStorage.setItem("id", response.data.id)
+            localStorage.setItem("user", JSON.stringify(response.data))
             return response.data;
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
@@ -93,7 +93,6 @@ export const deleteUserId = createAsyncThunk(
 const initialState: IUsersState = {
     users: [],
     user: null,
-    auth: false,
     loading: false,
     error: null,
 };
@@ -128,7 +127,6 @@ export const usersSlice = createSlice({
             .addCase(addUser.fulfilled, (state, action) => {
                 state.loading = false;
                 state.user = action.payload;
-                state.auth = true;
             })
             .addCase(addUser.rejected, (state, action) => {
                 state.loading = false;

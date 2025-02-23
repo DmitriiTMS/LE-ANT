@@ -6,7 +6,8 @@ export const getUserProfileId = createAsyncThunk(
     'usersProfile/getUserProfileId',
     async (id: number, thunkAPI) => {
         try {
-            const response = await axios.get<IUser>(`http://localhost:4200/users/${id}`)           
+            const response = await axios.get<IUser>(`http://localhost:4200/users/${id}`)
+            localStorage.setItem("user", JSON.stringify(response.data))        
             return response.data
         } catch (error) {
             if (axios.isAxiosError(error)) {
